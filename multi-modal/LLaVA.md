@@ -35,14 +35,15 @@ LLaVA 的模型结构分为三个部分：**视觉编码器、视觉-语言连�
 LLaVA 的训练是一个两阶段过程，包括：**多模态对齐预训练**、**端到端微调**。对每个图片生成多轮对话数据 $(X_q^1,X_a^2,\dots,X_q^T,X_a^T)$，其中 $T$ 为对话轮数，将它们组织为一个序列，将答案作为大模型的 ground truth 回答，并通过**语言建模损失**进行训练。第 $t$ 轮的指令为：
 
 $$
-X_{instruct}^t=\begin{cases}&\text{Randomly choose }[X_q^t,X_v]\text{ or }[X_v,X_q^t]&\text{if }t=1\\&X_q^t&\text{otherwise}\end{cases}
+X_{instruct}^t=\begin{cases}&\text{Randomly choose }[X_q^t,X_v]\text{ or }[X_v,X_q^t]&\text{if }t=1\newline&X_q^t&\text{otherwise}\end{cases}
 $$
 
 对于长度为 $L$ 的序列，目标答案的 $X_a$ 生成概率为：
 
 $$
-p(X_a|X_v,X_{instruct})=\prod_{i=1}^Lp_\theta(x_i|X_v,X_{instruct,<i},X_{a,<i})
+p(X_a|X_v,X_{instruct})=\prod_{i=1}^L p_\theta (x_i|X_v,X_{instruct,\lt i},X_{a,\lt i})
 $$
+
 下面是一个包含两轮对话的输入序列样例，只有**绿色的部分**（STOP 标识符和问题的 ground truth 答案）用于计算语言建模损失。
 
 <img src="./assets/llava-training.png" alt="train" style="zoom: 50%;" />
@@ -61,7 +62,7 @@ $$
 除此之外，LLaVA-1.5 通过下图所示的方式扩展到更高的分辨率。具体而言，LLaVA-1.5 设定了若干个网格设定：
 
 $$
-\left\{2\times2,1\times\left\{2,3,4\right\},\left\{2,3,4\right\}\times1\right\}
+\lbrace2\times2,1\times\lbrace2,3,4\rbrace,\lbrace2,3,4\rbrace\times1\rbrace
 $$
 
 其中，每个网格对应 336x336 的**子图**，同时对**原图**进行编码，编码的结果进行序列合并后输入到大模型中。
