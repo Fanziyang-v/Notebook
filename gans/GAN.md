@@ -77,3 +77,8 @@ $$
 
 **注意**：这里生成器的损失函数并不是前面重写的形式，但是它们两个是等价的，在实际中，作者采用前面重写的形式，因为他们认为这样训练更加稳定。实际的情况是都不那么稳定:)。
 
+
+
+## Reference
+
+1. [Generative Adversarial Nets](https://arxiv.org/abs/1406.2661) (Jun. 10, 2014)[![arxiv](https://img.shields.io/badge/arXiv-b31b1b.svg)](https://arxiv.org/abs/1406.2661)
