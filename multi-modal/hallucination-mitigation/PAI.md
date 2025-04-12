@@ -16,19 +16,18 @@
 
 为了缓解 “**文本惯性**” 现象，作者提出 PAI(Pay Attention To Image)，包含两个部分：
 
-1. **图像注意力增强**：生成每个 token 的过程中，在特定层中增强图像的注意力，具体公式如下：
-   $$
-   \widetilde{A}_{t,k}=\widetilde{A}_{t,k}+\alpha\times\vert\widetilde{A}_{t,k}\vert
-   $$
-   
-   其中 $k$ 表示图像 tokens 的下标。
-   
+1. **图像注意力增强**：生成每个 token 的过程中，在特定层中增强图像的注意力，具体公式为（其中 $k$ 表示图像 tokens 的下标）：
+
+```math
+\widetilde{A}_{t,k}=\widetilde{A}_{t,k}+\alpha\times\vert\widetilde{A}_{t,k}\vert
+```
+
+
 2. **视觉对比解码**：类似于 VCD，可以理解为 VCD 的一种**特殊情况**，即另一个分支的输入是一个**完全高斯噪声**的图片，这里 PAI 采取的是直接不输入对应的图片。通过对比解码的方式对 logits 进行细化，具体公式如下：
 
-   $$
-   \gamma logit(y\vert X_v,X_I,X_H)-(\gamma-1)logit(y\vert X_I,X_H)
-   $$
-   
+```math
+\gamma logit(y\vert X_v,X_I,X_H)-(\gamma-1)logit(y\vert X_I,X_H)
+```
 
 **注**：这里和原始对比解码公式是**等价**的，只需要令 $\gamma=1+\alpha$ 代入上述公式即可。
 
