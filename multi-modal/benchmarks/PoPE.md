@@ -23,7 +23,7 @@ PoPE 数据集包含**三种设定**：Random、Popular、Adversarial：
 
 下图阐述了 PoPE 数据集构造的方法，具体而言，给定一张图片，首先利用一个分割模型例如 SAM 获取图片的**分割图**，获得图片中的所有物体类别，也可以从人工标注中获取物体类别（例如 MSCOCO 数据集）。然后构造三个设定相关的问题-答案对。
 
-![pope](./assets/pope-example)
+![pope](./assets/pope-example.png)
 
 **总结**：PoPE 是一种**简单且有效**的物体幻觉评测数据集，PoPE 是一种判别式任务，通常的回答都很短（“Yes” 或 “No”），用于衡量多模态大模型的**图像感知**能力，然而，PoPE **无法衡量细粒度的物体幻觉现象**，例如物体属性和物体关系幻觉。
 
@@ -32,3 +32,4 @@ PoPE 数据集包含**三种设定**：Random、Popular、Adversarial：
 ## Reference
 
 1. [Evaluating Object Hallucination in Large Vision-Language Models](https://arxiv.org/abs/2305.10355) (May. 17, 2023, **EMNLP 2023**) [![arxiv](https://img.shields.io/badge/arXiv-b31b1b.svg)](https://arxiv.org/abs/2305.10355)[![github](https://img.shields.io/github/stars/AoiDragon/POPE)](https://github.com/AoiDragon/POPE)
+
